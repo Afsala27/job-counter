@@ -1,22 +1,33 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [counter, setCounter] = useState(0)
+
+  const addcount = () => {
+    setCounter(counter+1)
+
+  }
+  const deccount = () =>{
+    setCounter(counter-1)
+  }
+   
+  const clear = () =>{
+    setCounter((counter) => counter=0)
+  }
+  
+  const today = new Date()
+  const date = `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()}`
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="card">
+          <h4>{date}</h4>
+          <h2> Job Count : {counter}</h2>
+          <button onClick={addcount}> + </button>
+          <button onClick={deccount}> - </button>
+          <button onClick={clear}> Clear </button>
       </header>
     </div>
   );
